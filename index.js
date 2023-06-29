@@ -1,12 +1,9 @@
-'use strict';
-// const fs = require('fs')
-// const bencode = require('bencode')
-import fs from 'fs'
-import bencode from 'bencode'
+'use strict'
 import tracker from './tracker.js'
-
-const torrent = bencode.decode(fs.readFileSync('puppy.torrent'))
-
-tracker.getPeers(torrent, peers =>{
-    console.log('list of peers: ',peers);
-})
+import torrentParser from './torrent-parser.js';
+import download from './download.js';
+const torrent = torrentParser.open('./test.torrent')
+download(torrent, torrent.info.name)
+// tracker.getPeers(torrent, peers => {
+//     console.log('list of peers: ', peers);
+// })
